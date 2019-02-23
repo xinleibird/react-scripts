@@ -107,7 +107,8 @@ module.exports = function(
   };
 
   // Setup the lint-staged rules
-  appPackage['lint-staged']: {
+
+  const lintStagedDesc = {
     'src/**/*.{css,scss,less,sss}': [
       'prettier-stylelint --write',
       'git add',
@@ -121,6 +122,8 @@ module.exports = function(
       'git add',
     ],
   };
+
+  Object.defineProperty(appPackage, 'lint-staged', lintStagedDesc);
 
   // Setup the browsers list
   appPackage.browserslist = defaultBrowsers;
