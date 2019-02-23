@@ -271,14 +271,9 @@ module.exports = function(
     console.log(`Installing react and react-dom using ${command}...`);
     console.log();
 
-    let proc = spawn.sync(command, args, { stdio: 'inherit' });
+    const proc = spawn.sync(command, args, { stdio: 'inherit' });
     if (proc.status !== 0) {
       console.error(`\`${command} ${args.join(' ')}\` failed`);
-      return;
-    }
-    proc = spawn.sync(command, ['install'], { stdio: 'inherit' });
-    if (proc.status !== 0) {
-      console.error(`\`${command} ${args.join(' ')}\`user's optimum failed`);
       return;
     }
   }
