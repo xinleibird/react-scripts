@@ -103,7 +103,7 @@ module.exports = function(
 
   // Setup the husky rules
   appPackage.husky = {
-    hooks: { pre-commit: "lint-staged" },
+    hooks: { ['pre-commit']: "lint-staged" },
   };
 
   // Setup the lint-staged rules
