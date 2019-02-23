@@ -103,11 +103,11 @@ module.exports = function(
 
   // Setup the husky rules
   appPackage.husky = {
-    hooks: { ['pre-commit']: "lint-staged" },
+    hooks: { 'pre-commit': "lint-staged" },
   };
 
   // Setup the lint-staged rules
-  appPackage['lint-staged']: {
+  appPackage.'lint-staged': {
     'src/**/*.{css,scss,less,sss}': [
       'prettier-stylelint --write',
       'git add',
