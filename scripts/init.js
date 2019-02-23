@@ -125,6 +125,18 @@ module.exports = function(
       ]
     }
   });
+
+  Object.assign(appPackage.dependencies, {
+    eslint-plugin-prettier": "^3.0.1",
+    husky: '^1.3.1',
+    lint-staged: '^8.1.4',
+    prettier: '^1.16.4',
+    prettier-stylelint: '^0.4.2',
+    stylelint: '^9.10.1',
+    stylelint-config-prettier: '^4.0.0',
+    stylelint-order: '^2.0.0',
+    stylelint-scss: '^3.5.4'
+  });
   
   // Setup the browsers list
   appPackage.browserslist = defaultBrowsers;
