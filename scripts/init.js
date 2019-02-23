@@ -126,8 +126,7 @@ module.exports = function(
     }
   });
 
-  appPackage.devdependencies = appPackage.devdependencies || {};
-  Object.assign(appPackage.devdependencies, {
+  Object.assign(appPackage.dependencies, {
     'eslint-plugin-prettier': '^3.0.1',
     'husky': '^1.3.1',
     'lint-staged': '^8.1.4',
