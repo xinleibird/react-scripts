@@ -1,14 +1,14 @@
 {
   "name": "xinleibird-react-scripts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Configuration and scripts for Create React App. Fellow create-react-app v2.1.5",
-  "repository": "xinleibird/create-react-app",
+  "repository": "xinleibird/react-scripts",
   "license": "MIT",
   "engines": {
     "node": ">=6"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/xinleibird/react-scripts/issues"
   },
   "files": [
     "bin",
