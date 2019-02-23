@@ -1,6 +1,6 @@
 {
   "name": "xinleibird-react-scripts",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Configuration and scripts for Create React App. Fellow create-react-app v2.1.5",
   "repository": "xinleibird/react-scripts",
   "license": "MIT",
@@ -23,6 +23,20 @@
     "react-scripts": "./bin/react-scripts.js"
   },
   "types": "./lib/react-app.d.ts",
+  "lint-staged": {
+    "src/**/*.{css,scss,less,sss}": [
+      "prettier-stylelint --write",
+      "git add"
+    ],
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "src/**/*.{json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@babel/core": "7.2.2",
     "@svgr/webpack": "4.1.0",
@@ -80,6 +94,11 @@
     "webpack-dev-server": "3.1.14",
     "webpack-manifest-plugin": "2.0.4",
     "workbox-webpack-plugin": "3.6.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "devDependencies": {
     "react": "^16.3.2",

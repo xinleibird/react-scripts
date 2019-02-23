@@ -101,30 +101,6 @@ module.exports = function(
     eject: 'react-scripts eject',
   };
 
-  // Setup the husky rules
-  appPackage.husky = {
-    hooks: { 'pre-commit': 'lint-staged' },
-  };
-
-  // Setup the lint-staged rules
-
-  const lintStagedDesc = {
-    'src/**/*.{css,scss,less,sss}': [
-      'prettier-stylelint --write',
-      'git add',
-    ],
-    'src/**/*.{js,jsx,ts,tsx}': [
-      'eslint --fix',
-      'git add',
-    ],
-    'src/**/*.{json,md}': [
-      'prettier --write',
-      'git add',
-    ],
-  };
-
-  Object.defineProperty(appPackage, 'lint-staged', lintStagedDesc);
-
   // Setup the browsers list
   appPackage.browserslist = defaultBrowsers;
 
