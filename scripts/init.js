@@ -282,6 +282,18 @@ module.exports = function(
     verifyTypeScriptSetup();
   }
 
+  if (isReactInstalled(appPackage)) {
+    console.log('Installing optimum packages for user likely stylelint and prettier...');
+    console.log();
+
+    args = ['install'];
+    const pros = spawn.sync(command, args, { stdio: 'inherit' });
+    if (pros.status !== 0) {
+      console.error(`\`${command} ${args.join(' ')}\` failed`);
+      return;
+    }
+  }
+
   if (tryGitInit(appPath)) {
     console.log();
     console.log('Initialized a git repository.');
