@@ -132,6 +132,7 @@ module.exports = function(
     'lint-staged': '^8.1.4',
     'prettier': '^1.16.4',
     'prettier-stylelint': '^0.4.2',
+    'prop-types": "^15.7.2',
     'stylelint': '^9.10.1',
     'stylelint-config-prettier': '^4.0.0',
     'stylelint-order': '^2.0.0',
