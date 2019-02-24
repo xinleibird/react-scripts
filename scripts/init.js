@@ -186,56 +186,30 @@ module.exports = function(
     }
   }
 
-  try {
-    fs.moveSync(
-      path.join(appPath, 'prettierrc'),
-      path.join(appPath, '.prettierrc'),
-      []
-    );
-  } catch (err) {
-    // Append if there's already a `.prettierrc` file there
-    if (err.code === 'EEXIST') {
-      const data = fs.readFileSync(path.join(appPath, 'prettierrc'));
-      fs.appendFileSync(path.join(appPath, '.prettierrc'), data);
-      fs.unlinkSync(path.join(appPath, 'prettierrc'));
-    } else {
-      throw err;
+  const copyConfigFile = function copyConfigFile(fileName, newFileName) {
+    const useFileName = newFileName || fileName;
+    try {
+      fs.moveSync(
+        path.join(appPath, fileName),
+        path.join(appPath, useFileName),
+        []
+      );
+    } catch (err) {
+      if (err.code === 'EEXIST') {
+        const data = fs.readFileSync(path.join(appPath, fileName));
+        fs.appendFileSync(path.join(appPath, useFileName), data);
+        fs.unlinkSync(path.join(appPath, fileName));
+      } else {
+        throw err;
+      }
     }
-  }
+  };
 
-  try {
-    fs.moveSync(
-      path.join(appPath, 'eslintrc'),
-      path.join(appPath, '.eslintrc'),
-      []
-    );
-  } catch (err) {
-    // Append if there's already a `.eslintrc` file there
-    if (err.code === 'EEXIST') {
-      const data = fs.readFileSync(path.join(appPath, 'eslintrc'));
-      fs.appendFileSync(path.join(appPath, '.eslintrc'), data);
-      fs.unlinkSync(path.join(appPath, 'eslintrc'));
-    } else {
-      throw err;
-    }
-  }
+  copyConfigFile('prettierrc', '.prettierrc');
+  copyConfigFile('eslintrc', '.eslintrc');
+  copyConfigFile('stylelintrc', '.stylelintrc');
+  copyConfigFile('jsconfig.json');
 
-  try {
-    fs.moveSync(
-      path.join(appPath, 'stylelintrc'),
-      path.join(appPath, '.stylelintrc'),
-      []
-    );
-  } catch (err) {
-    // Append if there's already a `.stylelintrc` file there
-    if (err.code === 'EEXIST') {
-      const data = fs.readFileSync(path.join(appPath, 'stylelintrc'));
-      fs.appendFileSync(path.join(appPath, '.stylelintrc'), data);
-      fs.unlinkSync(path.join(appPath, 'stylelintrc'));
-    } else {
-      throw err;
-    }
-  }
 
   let command;
   let args;
