@@ -102,7 +102,7 @@ module.exports = function(
   };
 
   // Setup optional packages
-  const optionalPackage = JSON.parse(fs.readFileSync(require(path.join(appPath, 'optionalPackage.json'))));
+  const optionalPackage = JSON.parse(fs.readFileSync(require(path.join(__dirname, 'optionalPackage.json'))));
 
   for (const key in optionalPackage) {
     Object.assign(appPackage[key], optionalPackage[key]); 
@@ -179,7 +179,6 @@ module.exports = function(
   copyConfigFile('eslintrc', '.eslintrc');
   copyConfigFile('stylelintrc', '.stylelintrc');
   copyConfigFile('jsconfig.json');
-  copyConfigFile('optionalPackage.json');
 
   let command;
   let args;
@@ -229,8 +228,6 @@ module.exports = function(
   if (isReactInstalled(appPackage)) {
     console.log('Installing optional packages for user likely stylelint and prettier...');
     console.log();
-    fs.unlinkSync(path.join(appPath, 'optionalPackage.json'));
-
     args = ['install'];
     const pros = spawn.sync(command, args, { stdio: 'inherit' });
     if (pros.status !== 0) {
