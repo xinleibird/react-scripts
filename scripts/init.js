@@ -102,8 +102,7 @@ module.exports = function(
   };
 
   // Setup optional packages
-  const optionalFile = fs.readFileSync('../template/optionalPackage.json'));
-  const optionalPackage = JSON.parse(optionalFile);
+  const optionalPackage = fs.readJson('optionalPackage.json');
   for (const key in optionalPackage) {
     Object.assign(appPackage[key], optionalPackage[key]); 
   }
