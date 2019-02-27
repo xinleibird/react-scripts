@@ -126,7 +126,6 @@ module.exports = function(
   });
 
   Object.assign(appPackage.dependencies, {
-    'eslint-plugin-prettier': '^3.0.1',
     'husky': '^1.3.1',
     'lint-staged': '^8.1.4',
     'prettier': '^1.16.4',
