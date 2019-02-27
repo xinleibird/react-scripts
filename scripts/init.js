@@ -102,7 +102,11 @@ module.exports = function(
   };
 
   // Setup optional packages
-  const optionalPackage = fs.readJson('optionalPackage.json');
+  const jsonPath = path.dirname(
+    require.resolve(path.join(__dirname, '..', 'optionalPackage.json'))
+  );
+  
+  const optionalPackage = fs.readJson(jsonPath);
   for (const key in optionalPackage) {
     Object.assign(appPackage[key], optionalPackage[key]); 
   }
