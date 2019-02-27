@@ -105,6 +105,14 @@ module.exports = function(
   // Setup the browsers list
   appPackage.browserslist = defaultBrowsers;
 
+
+  // Setup the optionalPackages
+  const userOptionalPackages = appPackage.userOptionalSettings;
+  for (const key in userOptionalSettings) {
+    Object.assign(appPackage[key], optionalPackage[key]); 
+  }
+  
+
   fs.writeFileSync(
     path.join(appPath, 'package.json'),
     JSON.stringify(appPackage, null, 2) + os.EOL
@@ -174,14 +182,7 @@ module.exports = function(
   copyConfigFile('eslintrc', '.eslintrc');
   copyConfigFile('stylelintrc', '.stylelintrc');
   copyConfigFile('jsconfig.json');
-  copyConfigFile('optionalPackage.json');
 
-
-  const optionalPackage = fs.readJson(path.join(appPath, 'optionalPackage.md'));
-  for (const key in optionalPackage) {
-    Object.assign(appPackage[key], optionalPackage[key]); 
-  }
-  
 
   let command;
   let args;
