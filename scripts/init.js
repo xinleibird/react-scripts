@@ -229,7 +229,7 @@ module.exports = function(
   if (isReactInstalled(appPackage)) {
     console.log('Installing optional packages for user likely stylelint and prettier...');
     console.log();
-    fs.unlinkSync(path.join(appPath, 'optionalPackage.json));
+    fs.unlinkSync(path.join(appPath, 'optionalPackage.json'));
 
     args = ['install'];
     const pros = spawn.sync(command, args, { stdio: 'inherit' });
