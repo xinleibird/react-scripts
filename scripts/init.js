@@ -90,6 +90,7 @@ module.exports = function(
 
   // Copy over some of the devDependencies
   appPackage.dependencies = appPackage.dependencies || {};
+  console.log(appPackage.dependencies);
 
   const useTypeScript = appPackage.dependencies['typescript'] != null;
 
@@ -108,6 +109,7 @@ module.exports = function(
 
   // Setup the optionalPackages
   const userOptionalSettings = appPackage.userOptionalSettings;
+  console.log(appPackage);
   if (userOptionalSettings) {
     for (const key in userOptionalSettings) {
       Object.assign(appPackage[key], userOptionalSettings[key]); 
