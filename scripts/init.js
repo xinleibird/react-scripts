@@ -90,7 +90,6 @@ module.exports = function(
 
   // Copy over some of the devDependencies
   appPackage.dependencies = appPackage.dependencies || {};
-  console.log(appPackage.dependencies);
 
   const useTypeScript = appPackage.dependencies['typescript'] != null;
 
@@ -102,20 +101,45 @@ module.exports = function(
     eject: 'react-scripts eject',
   };
 
+  // Setup the optional script rules
+  appPackage.husky = {
+    'hooks': {
+      'pre-commit': 'lint-staged'
+    }
+  };
 
+  Object.assign(appPackage, {
+    'lint-staged': {
+      'src/**/*.{css,scss,less,sss}': [
+        'prettier-stylelint --write',
+        'git add'
+      ],
+      'src/**/*.{js,jsx,ts,tsx}': [
+        'eslint --fix',
+        'git add'
+      ],
+      'src/**/*.{json,md}': [
+        'prettier --write',
+        'git add'
+      ]
+    }
+  });
+
+  Object.assign(appPackage.dependencies, {
+    'eslint-plugin-prettier': '^3.0.1',
+    'husky': '^1.3.1',
+    'lint-staged': '^8.1.4',
+    'prettier': '^1.16.4',
+    'prettier-stylelint': '^0.4.2',
+    'prop-types": "^15.7.2',
+    'stylelint': '^9.10.1',
+    'stylelint-config-prettier': '^4.0.0',
+    'stylelint-order': '^2.0.0',
+    'stylelint-scss': '^3.5.4'
+  });
+  
   // Setup the browsers list
   appPackage.browserslist = defaultBrowsers;
-
-
-  // Setup the optionalPackages
-  const userOptionalSettings = appPackage.userOptionalSettings;
-  console.log(appPackage);
-  if (userOptionalSettings) {
-    for (const key in userOptionalSettings) {
-      Object.assign(appPackage[key], userOptionalSettings[key]); 
-    }
-  }
-  
 
   fs.writeFileSync(
     path.join(appPath, 'package.json'),
@@ -181,7 +205,6 @@ module.exports = function(
     }
   };
 
-  // Setup optional packages
   copyConfigFile('prettierrc', '.prettierrc');
   copyConfigFile('eslintrc', '.eslintrc');
   copyConfigFile('stylelintrc', '.stylelintrc');
@@ -236,6 +259,7 @@ module.exports = function(
   if (isReactInstalled(appPackage)) {
     console.log('Installing optional packages for user likely stylelint and prettier...');
     console.log();
+
     args = ['install'];
     const pros = spawn.sync(command, args, { stdio: 'inherit' });
     if (pros.status !== 0) {
