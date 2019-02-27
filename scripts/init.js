@@ -102,7 +102,7 @@ module.exports = function(
   };
 
   // Setup optional packages
-  const optionalPackage = JSON.parse(fs.readFileSync(require(path.join(__dirname, 'optionalPackage.json'))));
+  const optionalPackage = JSON.parse(fs.readFileSync(require(path.join(__dirname, '..', 'optionalPackage.json'))));
 
   for (const key in optionalPackage) {
     Object.assign(appPackage[key], optionalPackage[key]); 
