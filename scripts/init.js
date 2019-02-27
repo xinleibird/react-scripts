@@ -107,9 +107,11 @@ module.exports = function(
 
 
   // Setup the optionalPackages
-  const userOptionalPackages = appPackage.userOptionalSettings;
-  for (const key in userOptionalSettings) {
-    Object.assign(appPackage[key], optionalPackage[key]); 
+  const userOptionalSettings = appPackage.userOptionalSettings;
+  if (userOptionalSettings) {
+    for (const key in userOptionalSettings) {
+      Object.assign(appPackage[key], userOptionalSettings[key]); 
+    }
   }
   
 
