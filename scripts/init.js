@@ -101,14 +101,13 @@ module.exports = function(
     eject: 'react-scripts eject',
   };
 
-  // Setup the script rules
+  // Setup the optional script rules
   appPackage.husky = {
     'hooks': {
       'pre-commit': 'lint-staged'
     }
   };
 
-  // Setup the lint-staged rules
   Object.assign(appPackage, {
     'lint-staged': {
       'src/**/*.{css,scss,less,sss}': [
@@ -258,7 +257,7 @@ module.exports = function(
   }
 
   if (isReactInstalled(appPackage)) {
-    console.log('Installing optimum packages for user likely stylelint and prettier...');
+    console.log('Installing optional packages for user likely stylelint and prettier...');
     console.log();
 
     args = ['install'];
