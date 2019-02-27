@@ -101,15 +101,6 @@ module.exports = function(
     eject: 'react-scripts eject',
   };
 
-  // Setup optional packages
-  const jsonPath = path.dirname(
-    require.resolve(path.join(__dirname, '..', 'optionalPackage.json'))
-  );
-  
-  const optionalPackage = fs.readJson(jsonPath);
-  for (const key in optionalPackage) {
-    Object.assign(appPackage[key], optionalPackage[key]); 
-  }
 
   // Setup the browsers list
   appPackage.browserslist = defaultBrowsers;
@@ -178,10 +169,19 @@ module.exports = function(
     }
   };
 
+  // Setup optional packages
   copyConfigFile('prettierrc', '.prettierrc');
   copyConfigFile('eslintrc', '.eslintrc');
   copyConfigFile('stylelintrc', '.stylelintrc');
   copyConfigFile('jsconfig.json');
+  copyConfigFile('optionalPackage.json');
+
+
+  const optionalPackage = fs.readJson(path.join(appPath, 'optionalPackage.md'));
+  for (const key in optionalPackage) {
+    Object.assign(appPackage[key], optionalPackage[key]); 
+  }
+  
 
   let command;
   let args;
