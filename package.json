@@ -1,10 +1,6 @@
 {
   "name": "xinleibird-react-scripts",
-<<<<<<< HEAD
   "version": "0.0.1",
-=======
-  "version": "0.4.1",
->>>>>>> 02c2bf83c95830fca56c68c40074cb0089c4613d
   "description": "Configuration and scripts for Create React App. Fellow create-react-app v2.1.5",
   "repository": "xinleibird/react-scripts",
   "license": "MIT",
